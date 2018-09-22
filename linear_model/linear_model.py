@@ -42,17 +42,15 @@ class Linreg:
         a = np.linalg.inv(np.transpose(x).dot(x))
         b = np.transpose(x).dot(y)
         self.beta = a.dot(b)
-        return self.beta
 
     def predict(self, x):
         self.prediction = x.dot(self.beta)
-        return self.prediction
 
     def error(self, x, y):
         diff = y - self.prediction
         self.mse = np.linalg.norm(diff) ** 2 / x.shape[0]
-        return self.mse
         # return (np.transpose(diff).dot(diff))/x.shape[0]
+
 
 reg = Linreg()
 reg.fit(x_train, y_train)
@@ -61,6 +59,3 @@ reg.predict(x_test)
 print(reg.prediction)
 reg.error(x_test, y_test)
 print(reg.mse)
-
-
-
